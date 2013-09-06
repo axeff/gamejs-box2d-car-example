@@ -2,6 +2,11 @@ var gamejs = require('gamejs');
 var box2d = require('./Box2dWeb-2.1.a.3');
 var vectors = require('gamejs/utils/vectors');
 var math = require('gamejs/utils/math');
+var local = require('./local');
+var websocket = require('./websocket');
+var qrcode = require('./qrcode');
+var client = require('./client');
+
 
 var STEER_NONE=0;
 var STEER_RIGHT=1;
@@ -269,13 +274,14 @@ Car.prototype.update=function(msDuration){
         //calculate the change in wheel's angle for this update, assuming the wheel will reach is maximum angle from zero in 200 ms
         var incr=(this.max_steer_angle/200) * msDuration;
         
-        if(this.steer==STEER_RIGHT){
+/*        if(this.steer==STEER_RIGHT){
             this.wheel_angle=Math.min(Math.max(this.wheel_angle, 0)+incr, this.max_steer_angle) //increment angle without going over max steer
         }else if(this.steer==STEER_LEFT){
             this.wheel_angle=Math.max(Math.min(this.wheel_angle, 0)-incr, -this.max_steer_angle) //decrement angle without going over max steer
         }else{
             this.wheel_angle=0;        
-        }
+        }*/
+        this.wheel_angle = window.wheel_angle ? window.wheel_angle : 0;
 
         //update revolving wheels
         var wheels=this.getRevolvingWheels();
@@ -285,6 +291,8 @@ Car.prototype.update=function(msDuration){
         
         //3. APPLY FORCE TO WHEELS
         var base_vect; //vector pointing in the direction force will be applied to a wheel ; relative to the wheel.
+        
+        this.accelerate = window.accelerate;
         
         //if accelerator is pressed down and speed limit has not been reached, go forwards
         if((this.accelerate==ACC_ACCELERATE) && (this.getSpeedKMH() < this.max_speed)){

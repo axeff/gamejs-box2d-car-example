@@ -14,6 +14,18 @@
             width: 50%;
             height: 50%;
         }
+        #qrdiv {
+            position: absolute;
+            z-index: 1;
+            width: 400px;
+            height: 400px;
+            right: 0;
+            top: 0
+        }
+        canvas#qrcanv {
+            width: 200%;
+            height: 100%;
+        }
     </style>
 <!-- Start javascript/main.js -->
     <script src="./public/yabble.js"></script>
@@ -25,6 +37,10 @@
 </head>
 <!-- Html -->
 <body>
+    <div id="qrdiv">
+
+        <canvas id="qrcanv"}>No Canvas Support?
+    </div>
     <div>
         <img id="gjs-loader" src="./public/ajax-loader.gif">
         <canvas id="gjs-canvas"></canvas>

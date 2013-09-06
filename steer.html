@@ -1,0 +1,35 @@
+<html>
+<head>
+<script type="text/javascript" src="./javascript/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery.mobile-1.3.2.min.js"></script>
+<script type="text/javascript" src="./javascript/local.js"></script>
+<script type="text/javascript" src="./javascript/websocket.js"></script>
+<script type="text/javascript" src="./javascript/mobile.js"></script>
+<style>
+    #decelerate, #accelerate {
+        width: 49%;
+        height: 90%;
+        bottom:0;
+        position:absolute;
+        background-color: #666;
+        border: 1px solid white;
+    }
+    #decelerate {
+        left: 0;
+    }
+    #accelerate {
+        right: 0;
+    }
+</style>
+</head>
+<body>
+<div id="debug">
+    
+</div>
+<a href="#" id="disconnect" onclick="connection.close();return false;">Disconnect</a> 
+<div>
+    <a href="#" id="decelerate">brake</a>
+    <a href="#" id="accelerate">accelerate</a>
+</div>
+</body>
+</html>
